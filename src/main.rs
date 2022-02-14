@@ -10,7 +10,10 @@ fn main() {
     let int = to_int(&pad_input);
 
     println!("Integer, Calculated:\t{int}");
-    println!("Integer, Actual:\t{:?}", u32::from_str_radix(input.as_str(), 16).unwrap());
+    println!(
+        "Integer, Actual:\t{:?}",
+        u32::from_str_radix(input.as_str(), 16).unwrap()
+    );
 }
 
 fn get_input() -> String {
@@ -24,6 +27,7 @@ fn get_input() -> String {
     input.trim().to_ascii_uppercase()
 }
 
+/// Return a `String` with 32-bit length, 8 digits
 fn pad_hex(raw_hex: &str) -> String {
     format!("{raw_hex:0>8}")
 }
@@ -56,7 +60,11 @@ fn to_int(hex: &str) -> u32 {
 
 #[test]
 fn test_to_int() {
-    for val in ["0", "1", "A", "F0", "10000000", "0FDD5FDD", "FFFFFFFF"] {
+    let vals = [
+        "0", "1", "A", "F0", "10101010", "10000000", "0FDD5FDD", "FFFFFFFF",
+    ];
+
+    for val in vals {
         let t_val = pad_hex(val);
         let t_exp = u32::from_str_radix(val, 16).unwrap();
         assert_eq!(to_int(&t_val), t_exp);
