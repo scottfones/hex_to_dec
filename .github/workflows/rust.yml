@@ -17,22 +17,10 @@ jobs:
           - stable
           - beta
           - nightly
-        features:
-          - serde
-          - serde,base64
-          - simd_backend
-          - default
         os:
           - ubuntu-latest
           - macos-latest
           - windows-latest
-        exclude:
-          - rust: stable
-            features: simd_backend
-          - rust: beta
-            features: simd_backend
-          - os: windows-latest
-            features: simd_backend
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v2
@@ -42,17 +30,15 @@ jobs:
           profile: minimal
           toolchain: ${{ matrix.rust }}
           override: true
-          components: rustfmt, clippy #6
+          components: rustfmt, clippy
       - name: Build
         uses: actions-rs/cargo@v1
         with:
           command: build
-          args: --features ${{ matrix.features }}
       - name: Test
         uses: actions-rs/cargo@v1
         with:
           command: test
-          args: --features ${{ matrix.features }}
       - name: Rustfmt
         uses: actions-rs/cargo@v1
         with:
@@ -62,4 +48,4 @@ jobs:
         uses: actions-rs/cargo@v1
         with:
           command: clippy
-          args: --features ${{ matrix.features }} -- -D warnings
+          args: -- -D warnings
