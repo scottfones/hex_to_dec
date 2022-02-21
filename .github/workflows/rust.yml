@@ -1,4 +1,4 @@
-name: Multi Env: Build, Clippy, Format, Test
+name: Multi Env - Build, Clippy, Format, Test
 # ![rust workflow badge](https://github.com/scottfones/PROJECT/actions/workflows/rust.yml/badge.svg)
 
 on:
