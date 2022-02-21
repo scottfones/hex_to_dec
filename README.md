@@ -1,5 +1,7 @@
 # CISC 260: HW 1 - Hexadecimal to Integer
 
+![rust workflow badge](https://github.com/scottfones/hex_to_dec/actions/workflows/rust.yml/badge.svg)
+
 ## Assignment Write-up
 
 Write a program in the language of your choice which takes as input a string representation of an
