@@ -1,10 +1,15 @@
-name: Multi Build & Test
+name: Multi Env: Build, Clippy, Format, Test
+# ![rust workflow badge](https://github.com/scottfones/PROJECT/actions/workflows/rust.yml/badge.svg)
 
 on:
   push:
     branches: [main]
   pull_request:
     branches: [main]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.head_ref || github.run_id }}
+  cancel-in-progress: true
 
 env:
   CARGO_TERM_COLOR: always
